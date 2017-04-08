@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1 开启springmvc注解-->
+    <mvc:annotation-driven/>
+    <!--2 静态资源处理-->
+    <mvc:default-servlet-handler/>
+    <!--3 扫描web相关的包-->
+    <context:component-scan base-package="com.gude.controller"/>
+    <!--3 web视图-->
+    <mvc:view-resolvers>
+        <mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp" view-class="org.springframework.web.servlet.view.JstlView" />
+    </mvc:view-resolvers>
+
+    <!-- Enables swgger ui-->
+    <!--<bean class="com.gude.config.SwaggerConfig" /> 使用bean申明可以去掉@configuration-->
+    <context:component-scan base-package="com.gude.config"/>
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+</beans>
